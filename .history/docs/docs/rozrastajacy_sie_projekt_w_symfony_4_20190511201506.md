@@ -92,7 +92,7 @@ final class CategoryService
 }
 ```
 CategoryService opiera sie na CategoryRepositoryInterface nie na np. MysqlCategoryRepository.
-Nic nie szkodzi nam aby nasz test wyglądał tak.(W poprzednim wpisie zapomniałem o Validatorach :P, koncepcja jest taka, że Service powinny być niezależne od UI, czyli każdy ma własna walidację i nie jest uzależniony od warstw UI. Bez zmian w naszym Service powinniśmy dać radę napisać UI w CLI bez zmianny kodu samego Service. Jeżeli nie da się, coś zrobiliśmy źle)
+Nic nie szkodzi nam aby nasz test wyglądał tak
 ```php
 <?php
 
