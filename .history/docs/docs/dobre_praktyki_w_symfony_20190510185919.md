@@ -1,0 +1,1 @@
+# #2 Dobre praktyki podczas pracy z symfony w wiekszym projekcie
