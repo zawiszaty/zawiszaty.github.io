@@ -42,14 +42,10 @@ Klasa nie dostaje konkretnej implementacji a interfejs. Czyli podmiana implement
 Przykład?
 ```php
 <?php
-
 declare(strict_types=1);
-
 namespace App\Application\Service;
-
 use App\Domain\Category\Factory\CategoryFactory;
 use App\Domain\Category\Repository\CategoryRepositoryInterface;
-
 /**
  * Class CategoryService.
  */
@@ -59,7 +55,6 @@ final class CategoryService
      * @var CategoryRepositoryInterface
      */
     private $categoryRepository;
-
     /**
      * CategoryService constructor.
      *
@@ -69,7 +64,6 @@ final class CategoryService
     {
         $this->categoryRepository = $categoryRepository;
     }
-
     /**
      * @param string $name
      */
@@ -113,7 +107,7 @@ class CategoryServiceTest extends ApplicationTestCase
         $this->repository = new InMemoryCategoryRepository();
         $this->service = new CategoryService($this->repository);
     }
-
+    
     /**
      * @throws ORMException
      * @throws OptimisticLockException

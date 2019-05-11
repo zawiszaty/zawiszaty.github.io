@@ -42,14 +42,10 @@ Klasa nie dostaje konkretnej implementacji a interfejs. Czyli podmiana implement
 Przykład?
 ```php
 <?php
-
 declare(strict_types=1);
-
 namespace App\Application\Service;
-
 use App\Domain\Category\Factory\CategoryFactory;
 use App\Domain\Category\Repository\CategoryRepositoryInterface;
-
 /**
  * Class CategoryService.
  */
@@ -59,7 +55,6 @@ final class CategoryService
      * @var CategoryRepositoryInterface
      */
     private $categoryRepository;
-
     /**
      * CategoryService constructor.
      *
@@ -69,7 +64,6 @@ final class CategoryService
     {
         $this->categoryRepository = $categoryRepository;
     }
-
     /**
      * @param string $name
      */
@@ -85,35 +79,29 @@ CategoryService opiera sie na CategoryRepositoryInterface nie na np. MysqlCatego
 Nic nie szkodzi nam aby nasz test wyglądał tak
 ```php
 <?php
-
 namespace App\Tests\Application\Service;
-
 use App\Application\Service\CategoryService;
 use App\Domain\Category\Category;
 use App\Infrastructure\Category\Repository\InMemoryCategoryRepository;
 use App\Tests\Application\ApplicationTestCase;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-
 class CategoryServiceTest extends ApplicationTestCase
 {
     /**
      * @var CategoryService|object|null
      */
     private $service;
-
     /**
      * @var InMemoryCategoryRepository
      */
     private $repository;
-
     protected function setUp(): void
     {
         parent::setUp();
         $this->repository = new InMemoryCategoryRepository();
         $this->service = new CategoryService($this->repository);
     }
-
     /**
      * @throws ORMException
      * @throws OptimisticLockException
@@ -131,21 +119,16 @@ Nie odpalamy nawet kernela symfony, wiec nasz test jest szybszy.
 A nasz serwis nie zorientuje sie nawet, że repozytorium które dostał wygląda tak
 ```php
 <?php
-
 declare(strict_types=1);
-
 namespace App\Infrastructure\Category\Repository;
-
 use App\Domain\Category\Category;
 use App\Domain\Category\Repository\CategoryRepositoryInterface;
-
 class InMemoryCategoryRepository implements CategoryRepositoryInterface
 {
     /**
      * @var array
      */
     private $categories = [];
-
     public function findOneByName(?string $name): ?Category
     {
         /** @var Category $category */
@@ -154,20 +137,16 @@ class InMemoryCategoryRepository implements CategoryRepositoryInterface
                 return $category;
             }
         }
-
         return null;
     }
-
     public function getAllCategory(int $page, int $limit): array
     {
         $data = [
             'data' => \array_slice($this->categories, \count($this->categories) - $limit),
             'count' => \count($this->categories),
         ];
-
         return $data;
     }
-
     public function save(Category $category): void
     {
         $this->categories[] = $category;
@@ -261,35 +240,27 @@ Następnie, aby nie uzależnić domeny od doctrina, wywalamy adnotacje orma z en
 Każda zewnętrzna biblioteka powinna mieć swój adapter. Tak samo, jak w repozytorium nie operujemy na konkretnej implementacji, a zaślepkach. Jeżeli stwierdzimy ze biblioteka była słaba w łatwy sposób ją zmienimy. Bądź zaślepimy ją w testach.
 ```php
 <?php
-
 declare(strict_types=1);
-
 namespace App\Infrastructure\Shared\Adapter;
-
 use Doctrine\ORM\EntityManagerInterface;
-
 class DoctrineEntityManagerAdapter implements EntityManagerAdapterInterface
 {
     /**
      * @var EntityManagerInterface
      */
     private $entityManager;
-
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
-
     public function persist(object $model): void
     {
         $this->entityManager->persist($model);
     }
-
     public function flush(): void
     {
         $this->entityManager->flush();
     }
-
     public function getRepository(string $model): object
     {
         return $this->entityManager->getRepository($model);
