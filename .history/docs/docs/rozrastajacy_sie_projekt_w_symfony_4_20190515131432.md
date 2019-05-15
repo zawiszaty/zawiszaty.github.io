@@ -316,6 +316,7 @@ Tutaj właśnie deptrac pokaże swój pazur i będzie dobrze pilnował naszych w
 
 Nowa konfiguracja
 ```yaml
+
 paths:
   - ./src
 exclude_files:
