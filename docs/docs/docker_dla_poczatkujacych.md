@@ -4,7 +4,7 @@ Docker jest oprogramowaniem, które pomaga nam w tworzeniu aplikacji opartych o 
 Przez co na innych systemach działa wolniej i mogą być pewne różnice w działaniu.
 
 ## Czym są kontenery?
-Kontener zachowuje się jak maszyna wirtualna. Wyobraźni sobie, że jest on osobnym serwerem, do którego łączymy się po ssh. Nasze kontenery w żaden sposób nie ingerują w nasz natywny system możemy mieć na raz odpalone php7, php5 oraz każda inna wersje którą znajdziemy na docker hub. 
+Kontener zachowuje się w podobny sposób jak maszyna wirtualna(ale nią nie jest [czym rózni sie kontener od vm](https://www.youtube.com/watch?v=L1ie8negCjc)). Wyobraźmy sobie, że jest on osobnym serwerem, do którego łączymy się po ssh. Nasze kontenery w żaden sposób nie ingerują w nasz natywny system możemy mieć na raz odpalone php7, php5 oraz każda inna wersje którą znajdziemy na docker hub. 
 
 ## Kiedy używać?
 Mamy wiele projektów, w których jest ryzyko, że będą oddziaływać na siebie (np. kilka projektów ma identyczną nazwę bazy danych itp), kiedy projekty mają diametralnie inną wersję języka albo chcemy mieć pewność, że nikt z naszego zespołu nie zainstaluje (np przypadkiem) innej wersji jakieś bazy danych, języka itp. W łatwy sposób pozwala odtworzyć środowisko developerskie i automatyzować jego uruchomienie.
@@ -15,7 +15,7 @@ docker run --name nazwa_kontenera -e MYSQL_ROOT_PASSWORD=haslo -d mysql:5.7.26 -
 ```
 
 ### --name
-Nazwa potrzebna do łączenia sie do kontenera(po nazwie jest łatwiej ale można też po id kontenera).
+Nazwa potrzebna do łączenia sie do kontenera(po nazwie jest łatwiej ale można też po id kontenera. ID możemy zobaczyć przez polecenie `docker ps`).
 
 ### -e
 Tutaj podajemy parametry startowe dla naszego kontenera np hasło do naszej bazy danych
@@ -29,9 +29,14 @@ Kolejny port to port kontenera na którym udostępnia połączenie domyślnie dl
 
 ### Jak sie połączyć z kontenerem?
 ```bash
+docker exec nazwa_kontenera echo "test" //wykonanie komendy w kontenerze
+```
+
+#### -it
+```bash
 docker exec -it nazwa_kontenera /bin/bash
 ```
-Po tej komendzie połączymy sie do naszego `serwera` po przysłowiowym ssh :P 
+Logowanie interaktywne, czyli łączymy sie do `serwera` jak po ssh.
 
 ## Automatyczne wdrażanie aplikacji z docker-compose
 
@@ -51,7 +56,7 @@ docker run --restart=always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/doc
 Po restracie komputera ten kontener uruchomi sie samemu. 
 
 ##### Portainer
-Polecam zapoznać sie z tym softem :P. Jeżeli ktoś lubi, to jest to fajne UI do dockera [link](https://www.portainer.io/)
+Polecam zapoznać sie z tym softem :P. Jest to fajne UI dla dockera [aby zobaczyć *kliknij tutaj*](https://www.portainer.io/)
 
 ### Przykład
 ```yml
@@ -175,7 +180,7 @@ docker-compose -f docker-compose.prod.yml exec php php bin/console d:d:c
 ```
 
 ### Podsumowanie
-Jak zwykle wpis jest tylko zbiorem moich luźnych przemyśleń, w których pokazuję jak można używać dockera. Ten wpis nie zrobi z ciebie specjalisty od dockera, ale wystarczy do swobodnego użytkowania przy gotowym projekcie, albo postawienia własnej konfiguracji. W następnym wpisię poruszę temat pisania własnych obrazów dockera i trzymanie ich w docker hub
+Jak zwykle wpis jest tylko zbiorem moich luźnych przemyśleń, w których pokazuję jak można używać dockera. Ten wpis nie zrobi z ciebie specjalisty od dockera, ale wystarczy do swobodnego użytkowania przy gotowym projekcie, albo postawienia własnej konfiguracji. W następnym wpisię poruszę temat pisania własnych obrazów dockera i trzymanie ich w docker hub. 
 
 Cały projekt używający docker-compose możecie obejrzeć tutaj 
 * [nginx i php](https://github.com/zawiszaty/symfony_simple_crud_example)
