@@ -41,7 +41,7 @@ Logowanie interaktywne, czyli łączymy sie do `serwera` jak po ssh.
 ## Automatyczne wdrażanie aplikacji z docker-compose
 
 ### Co to właściwie daje?
-docker-compose pozwala nam automatycznie pobierać kontnery w odpowiedniej wersji (przydatne wtedy kiedy cała aplikacja chcemy oprzeć o dockera i musimy pobrać np nginx, baza, php, redis itp). Do tego otacza nasze kontenery siecią oraz serwerem dns i pozwala nam na komunikacje miedzy nimi przez nazwe z konfiguracji np. mysql i automatycznie stworzy nasze wolumeny.
+docker-compose pozwala nam automatycznie pobierać kontnery w odpowiedniej wersji (przydatne wtedy kiedy cała aplikacja chcemy oprzeć o dockera i musimy pobrać np nginx, bazę, php, redis itp). Do tego otacza nasze kontenery siecią oraz serwerem dns i pozwala nam na komunikacje miedzy nimi przez nazwe z konfiguracji np. mysql i automatycznie stworzy nasze wolumeny.
 
 ### Wolumeny
 Jest to miejsce na naszym dysku w którym przechowywane są dane z kontenera. Domyślnie jeżeli mamy baze danych to bez wolumena po wyłączeniu kontenera wszystkie dane nam znikną. Jeżeli podepniemy pod kontener wolumen dane bedą przechowywane w tym miejscu i po restarcie dane wczytaja sie z wolumena.
@@ -120,13 +120,13 @@ volumes:
   sessions:
 ```
 
-#### Version
-Poszczególne wersje różnia sie od siebie wiec musimy zdefiniowac kótrej używamy. 
+#### version
+Poszczególne wersje różnią się od siebie wiec musimy zdefiniowac której używamy. 
 
-#### Services
+#### services
 Tutaj ustalamy jakich kontenerów używamy.
 
-##### Links
+##### links
 Pozwalamy aby kontenery widziały sie przez wewnętrzny dns
 
 ##### working_dir
@@ -169,18 +169,19 @@ docker-compose exec php php bin/console
 W obu używamy nazwy z services z docker-compose.yml
 
 #### Inna nazwa 
-Domyślnie docker-compose szuka pliku docker-compose.yml jeżeli chcemy nazwać nasz plik inaczej albo chcemy mieć osobny plik np dla produkcji to dodajemy flage -f i po niej nazwe pliki np
+Domyślnie docker-compose szuka pliku docker-compose.yml jeżeli chcemy nazwać nasz plik inaczej albo chcemy mieć osobny plik np dla produkcji to dodajemy flage -f i po niej nazwe pliku np:
 
 ```bash
 docker-compose -f docker-compose.prod.yml up  -d
 ```
+
 Po takiej zmianie przy każdym poleceniu musimy dawać flage -f jeżeli chcemy kożystać z tego `compose` np:
 ```bash
 docker-compose -f docker-compose.prod.yml exec php php bin/console d:d:c 
 ```
 
 ### Podsumowanie
-Jak zwykle wpis jest tylko zbiorem moich luźnych przemyśleń, w których pokazuję jak można używać dockera. Ten wpis nie zrobi z ciebie specjalisty od dockera, ale wystarczy do swobodnego użytkowania przy gotowym projekcie, albo postawienia własnej konfiguracji. W następnym wpisię poruszę temat pisania własnych obrazów dockera i trzymanie ich w docker hub. 
+Jak zwykle wpis jest tylko zbiorem moich luźnych przemyśleń, w których pokazuję jak można używać dockera. Ten wpis nie zrobi z ciebie specjalisty od dockera, ale wystarczy do swobodnego użytkowania przy gotowym projekcie, albo postawienia własnej konfiguracji. Musimy jednak pamiętać o tym, że docker podczas procesu developmentu może nam sporo ułatwić, ale musimy pamiętać, że nie są to prawdzie maszyny wirtualne i powinniśmy sie 2 razy zastanowić co umieść w konfiguracji produkcyjnej..W następnym wpisię poruszę temat pisania własnych obrazów dockera i trzymanie ich w docker hub. 
 
 Cały projekt używający docker-compose możecie obejrzeć tutaj 
 * [nginx i php](https://github.com/zawiszaty/symfony_simple_crud_example)
