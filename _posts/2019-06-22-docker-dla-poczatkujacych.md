@@ -3,6 +3,7 @@ layout: post
 title:  "#3 Docker dla początkujących"
 date:   2019-06-22 21:03:36 +0530
 categories: PHP Docker
+image: thumbnails.jpg
 ---
 
 Docker jest oprogramowaniem, które pomaga nam w tworzeniu aplikacji opartych o kontenery. Natywnie działa tylko i wyłącznie na Linux. Na innych systemach działa tylko i wyłącznie dlatego, że Linux jest w pewien sposób wirtualizowany. Właśnie dlatego docker nie zadziała na Windows w wersji Home, ponieważ do wirtualizowania Linuxa używa Hyper-V.

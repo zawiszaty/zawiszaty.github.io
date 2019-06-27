@@ -3,6 +3,7 @@ layout: post
 title:  "#2 Rozrastajacy sie projekt w Symfony 4"
 date:   2019-04-16 21:03:36 +0530
 categories: PHP Symfony PHPUnit Deptrac PHPStan
+image: thumbnails.jpg
 ---
 
 
