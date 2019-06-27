@@ -13,9 +13,12 @@
 				<a href="https://github.com/{{ site.plainwhite.social_links.github }}"><li><i class="icon-github-circled"></i></li></a>
 				<a href="https://www.linkedin.com/{{ site.plainwhite.social_links.linkedIn }}"><li><i class="icon-linkedin-squared"></i></li></a>
 			</ul>
+			{% if page.path contains '_posts' %}
+			<a href='{{site.url}}/'>Back To Home</a>
+			{%- endif -%}
 			<p>&copy; 2019</p>
 		</section>
-		<section class="content">
+		<section class="content" style="margin-bottom: 10em;">
 			{{ content }}
 		</section>
 	</main>
@@ -29,5 +32,10 @@
 		gtag('config', '{{ site.plainwhite.analytics_id }}');
 	</script>
 	{%- endif -%}
+	<script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+	<script>addBackToTop({
+  		diameter: 56,
+  		textColor: '#fff'
+	})</script>
 </body>
 </html>

@@ -12,7 +12,7 @@ Przez co na innych systemach działa wolniej i mogą być pewne różnice w dzia
 Kontener zachowuje się w podobny sposób jak maszyna wirtualna (ale nią nie jest [czym różni sie kontener od vm](https://www.youtube.com/watch?v=L1ie8negCjc)). Wyobraźmy sobie, że jest on osobnym serwerem, do którego łączymy się po ssh. Nasze kontenery w żaden sposób nie ingerują w nasz natywny system możemy mieć na raz odpalone php7, php5 oraz każda inna wersje (którą znajdziemy na docker hub).
 
 ## Kiedy używać?
-Mamy wiele projektów, w których jest ryzyko, że będą oddziaływać na siebie (np. kilka projektów ma identyczną nazwę bazy danych itp), kiedy projekty mają diametralnie inną wersję języka albo chcemy mieć pewność, że nikt z naszego zespołu nie zainstaluje (np. przypadkiem) innej wersji jakieś bazy danych, języka itp. W łatwy sposób pozwala odtworzyć środowisko developerskie i automatyzować jego uruchomienie.
+Mamy wiele projektów, w których jest ryzyko, że będą oddziaływać na siebie (np. kilka projektów ma identyczną nazwę bazy danych itp). Innym miejscem, gdzie docker sie sprawdzi są projekty które mają diametralnie inną wersję języka albo chcemy mieć pewność, że nikt z naszego zespołu nie zainstaluje (np. przypadkiem) innej wersji jakieś bazy danych, języka itp. W łatwy sposób pozwala odtworzyć środowisko developerskie i automatyzować jego uruchomienie.
 
 ## Przykład uruchomienia kontenera
 ```bash
@@ -29,8 +29,8 @@ Tutaj podajemy parametry startowe dla naszego kontenera np hasło do naszej bazy
 kontener odpali sie w 'tle', bez tej opcji widzielibyśmy logi kontenera i po zamknieciu terminala kontener by sie wyłączył.
 
 ### -p
-Port, na którym nasza aplikacja ma być dostępna. Pierwszy port to port naszego komputera, czyli publiczny port po którym np nasza aplikacja będzie się łączyć z naszą bazą danych (ten port może być dowolny).
-Kolejny port to port kontenera, na którym udostępnia połączenie domyślnie dla mysql jest to port 3306.
+Port, na którym nasza aplikacja ma być dostępna. Pierwszy port to port naszego komputera, czyli port po którym np nasza aplikacja będzie się łączyć z naszą bazą danych (ten port może być dowolny).
+Kolejny port to port kontenera, na którym udostępnia połączenie (domyślnie dla mysql jest to port 3306).
 
 ### Jak sie połączyć z kontenerem?
 ```bash
@@ -49,7 +49,7 @@ Logowanie interaktywne, czyli łączymy sie do 'serwera' jak po ssh.
 docker-compose pozwala nam automatycznie pobierać kontnery w odpowiedniej wersji (przydatne, wtedy kiedy cała aplikacja chcemy oprzeć o dockera i musimy pobrać np nginx, bazę, php, redis itp). Do tego otacza nasze kontenery siecią oraz serwerem dns i pozwala nam na komunikacje między nimi przez nazwe z konfiguracji np. mysql i automatycznie stworzy nasze wolumeny.
 
 ### Wolumeny
-Jest to miejsce na naszym dysku, w którym przechowywane są dane z kontenera. Domyślnie, jeżeli mamy bazę danych to bez wolumena po wyłączeniu kontenera wszystkie dane nam znikną. Jeżeli podepniemy pod kontener wolumen dane będą przechowywane w tym miejscu i po restarcie dane wczytają się z wolumena.
+Jest to miejsce, w którym przechowywane są dane z kontenera. Domyślnie, jeżeli mamy bazę danych to bez wolumena po wyłączeniu kontenera wszystkie dane nam znikną. Jeżeli podepniemy pod kontener wolumen dane będą przechowywane w tym miejscu i po restarcie dane wczytają się z wolumena.
 
 #### Przykład bez docker-compose
 ```bash
@@ -126,7 +126,7 @@ sessions:
 ```
 
 #### version
-Poszczególne wersje różnią się od siebie wiec musimy zdefiniować której używamy.
+Poszczególne wersje docker-compose różnią się od siebie wiec musimy zdefiniować której używamy.
 
 #### services
 Tutaj ustalamy jakich kontenerów używamy.
@@ -138,7 +138,7 @@ Pozwalamy, aby kontenery widziały sie przez wewnętrzny dns
 W jakim katalogu znajdziemy sie po zalogowaniu do kontenera.
 
 ##### environment
-Startowa konfiguracja naszego kontenera
+Ustawienia zmiennych środowiskowych podczas startu kontenera.
 
 ##### volumes
 Wewnątrz konfiguracji kontenera definiujemy, jakiego wolumena ma uzywać i co ma być w nim trzymane, ale także możemy 'ładować' jakiś plik przy starcie kontenera np konfiguracje nginx
@@ -186,12 +186,20 @@ docker-compose -f docker-compose.prod.yml exec php php bin/console d:d:c
 ```
 
 ### Podsumowanie
-Jak zwykle wpis jest tylko zbiorem moich luźnych przemyśleń, w których pokazuję jak można używać dockera. Ten wpis nie zrobi z ciebie specjalisty od dockera, ale wystarczy do swobodnego użytkowania przy gotowym projekcie, albo postawienia własnej konfiguracji. Musimy jednak pamiętać o tym, że docker podczas procesu developmentu może nam sporo ułatwić, ale musimy pamiętać, że nie są to prawdzie maszyny wirtualne i powinniśmy sie 2 razy zastanowić co umieść w konfiguracji produkcyjnej. W następnym wpisię poruszę temat pisania własnych obrazów dockera i trzymanie ich w docker hub.
+Jak zwykle wpis jest tylko zbiorem moich luźnych przemyśleń, w których pokazuję jak można używać dockera. Ten wpis nie zrobi z ciebie specjalisty od dockera, ale wystarczy do swobodnego użytkowania przy gotowym projekcie, albo postawienia własnej konfiguracji. Musimy jednak pamiętać o tym, że docker podczas procesu developmentu może nam sporo ułatwić, ale musimy pamiętać, że nie są to prawdzie maszyny wirtualne i powinniśmy sie 2 razy zastanowić co umieść w konfiguracji produkcyjnej. W następnym wpisie poruszę temat pisania własnych obrazów dockera i trzymanie ich w docker hub.
 
 Cały projekt używający docker-compose możecie obejrzeć tutaj
 * [nginx i php](https://github.com/zawiszaty/symfony_simple_crud_example)
 * [apache i php](https://github.com/ferdyrurka/devBook)
 
-Polecam także, jeżeli korzystacie z Linuxa/Maca pisanie makefile pozwala zaoszczędzić czas i automatyzować rzeczy :P
+Jeżeli korzystacie z Linuxa/Maca polecam pisanie makefile. Pozwala to zaoszczędzić czas i automatyzować rzeczy np:
+```
+.PHONY: dbReset
+dbReset: 
+		docker-compose exec php php bin/console d:d:d --if-exists --force
+		docker-compose exec php php bin/console d:d:c
+		docker-compose exec php php bin/console d:s:c
+		docker-compose exec php php bin/console d:m:m -n
+```
 
 

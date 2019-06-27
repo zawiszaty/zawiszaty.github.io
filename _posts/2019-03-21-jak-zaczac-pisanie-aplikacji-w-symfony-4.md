@@ -657,4 +657,4 @@ Przykładowy konfig uzywajacy dockera.
 CI pozwala nam na zobaczenie czy nasz projekt uruchomi sie na świeżym serwerze i czy bedzie działać poprawnie poprzez odpalanie testów. Szczególnie przydatne kiedy nad projektem pracuje kilku devów
 ### Kilka słów na zakończenie
 Na pewno każdy, kto pracuje na co dzień z symfony spotyka sie z mieszaniem warstw, niewydzielaniem logiki poza kontroler, brakiem testów itp. Ten artykuł pokazuje jak małym kosztem można dodać trochę lepszych praktyk do swojego projektu, które czasami mogą uratować nam skórę. Projekt nie jest idealny ani nie jest wyznacznikiem dobrych praktyk w symfony. Ma za zadanie nakłonić innych to większego myślenia nad jakością swojego kodu i udowodnienie że to jednak nie jest takie trudne.
-Repo pokazujące te rzeczy w `akcji` jest dostępne pod linkiem. https://github.com/zawiszaty/symfony_simple_crud_example
+Repo pokazujące te rzeczy w `akcji` jest dostępne pod [*linkiem*](https://github.com/zawiszaty/symfony_simple_crud_example).
