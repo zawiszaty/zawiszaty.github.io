@@ -2,6 +2,7 @@
 layout: post
 title:  "#1 Jak zacząć pisanie aplikacji w Symfony 4"
 date:   2019-03-21 21:03:36 +0530
+image: thumbnails.jpg
 categories: PHP Symfony PHPUnit
 ---
 
