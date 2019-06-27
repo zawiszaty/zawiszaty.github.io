@@ -555,7 +555,7 @@ class CategoryControllerTest extends ApplicationTestCase
     }
 }
 ```
-Następnie piszemy kod Kontrolera
+Następnie piszemy kod Kontrolera:
 ```php
 use App\Form\CategoryType;
 use App\FormNormalizer\FormErrorSerializer;

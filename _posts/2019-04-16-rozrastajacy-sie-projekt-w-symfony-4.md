@@ -322,7 +322,7 @@ class DoctrineEntityManagerAdapter implements EntityManagerAdapterInterface
 ### Deptrac 
 Tutaj właśnie deptrac pokaże swój pazur i będzie dobrze pilnował naszych warstw.
 
-Nowa konfiguracja
+Nowa konfiguracja:
 ```yaml
 paths:
   - ./src
