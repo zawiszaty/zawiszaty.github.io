@@ -70,60 +70,60 @@ Polecam zapoznać sie z tym softem :P. Jest to fajne UI dla dockera [aby zobaczy
 version: '3.1'
 
 services:
-nginx:
-image: nginx:1.15.9
-ports:
-- "80:80"
-volumes:
-- ./:/var/www/project
-- ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-links:
-- db
-- php
+	nginx:
+		image: nginx:1.15.9
+		ports:
+			- "80:80"
+		volumes:
+			- ./:/var/www/project
+			- ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+		links:
+			- db
+			- php
 
-php:
-image: zawiszaty/tutorials-tank-php:3.0.3
-working_dir: /var/www/project
-volumes:
-- ./:/var/www/project
-links:
-- db
+	php:
+		image: zawiszaty/tutorials-tank-php:3.0.3
+		working_dir: /var/www/project
+		volumes:
+			- ./:/var/www/project
+		links:
+			- db
 
-composer:
-image: composer:1.8
-working_dir: /var/www/project
-volumes:
-- ./:/var/www/project
-links:
-- php
+	composer:
+		image: composer:1.8
+		working_dir: /var/www/project
+		volumes:
+			- ./:/var/www/project
+		links:
+			- php
 
-db:
-image: mysql:5.7
-environment:
-MYSQL_ROOT_PASSWORD: admin
-volumes:
-- db_data:/var/lib/mysql
-- ./docker/mysql/my.cnf:/etc/mysql/my.cnf
-ports:
-- 3307:3307
+	db:
+		image: mysql:5.7
+		environment:
+		MYSQL_ROOT_PASSWORD: admin
+		volumes:
+			- db_data:/var/lib/mysql
+			- ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+		ports:
+			- 3307:3307
 
-phpmyadmin:
-image: phpmyadmin/phpmyadmin
-environment:
-MYSQL_USERNAME: root
-MYSQL_ROOT_PASSWORD: admin
-PMA_PORT: "3307"
-PMA_HOST: db
-restart: always
-ports:
-- 8000:80
-volumes:
-- /sessions
+	phpmyadmin:
+		image: phpmyadmin/phpmyadmin
+		environment:
+		MYSQL_USERNAME: root
+		MYSQL_ROOT_PASSWORD: admin
+		PMA_PORT: "3307"
+		PMA_HOST: db
+		restart: always
+		ports:
+			- 8000:80
+		volumes:
+			- /sessions
 
-volumes:
-php:
-db_data:
-sessions:
+	volumes:
+		php:
+		db_data:
+		sessions:
 ```
 
 #### version
