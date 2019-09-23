@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "#4 Autmatyczne budowanie i publikacja kontenerów dockera przy uzyciu circleci"
+title:  "#4 Autmatyczne budowanie i publikacja obrazów dockera przy uzyciu circleci"
 date:   2019-09-23 18:03:36 +0530
 categories: PHP Docker
 image: thumbnails.jpg
 ---
-Niejednokrotnie pewnie musieliście pushować swoje obrazy do jakiegoś rejestru np docker-hub. Teraz możecie to zrobić nieco sprytniej. 
+Niejednokrotnie pewnie musieliście pushować swoje obrazy do jakiegoś rejestru np docker hub. Teraz możecie to zrobić nieco sprytniej. 
 
 # Piszemy swój Dockerfile
 Dla przykładu uzyje podstawowego dockerfila dla PHP.
