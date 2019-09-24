@@ -118,7 +118,7 @@ w zakładce `Environment Variables` w ustawieniach konkretnego projketu.
 
 Po kazdym pushu do gita autmatycznie zostania opublikowana wersja latest naszego obrazu.
 
-Konkretnę wersje np `7.3.6` tworzymy poprzez realse np tworzymy realse o tagu `v7.3.6`(w moim configu wazne jest aby realse zaczynał sie od `v.` inaczej nie zadziała :P, jezeli chcecie inaczej to edytujcie to w build-tags) i automatycznie nasze CI opublikuje nasz obraz pod tagiem `7.3.6`.
+Konkretnę wersje np `7.3.6` tworzymy poprzez release np tworzymy release o tagu `v7.3.6`(w moim configu wazne jest aby release zaczynał sie od `v.` inaczej nie zadziała :P, jezeli chcecie inaczej to edytujcie to w build-tags) i automatycznie nasze CI opublikuje nasz obraz pod tagiem `7.3.6`.
 
 # Podsumowanie
 Widać, że nie jest to trudna rzecz, a może nam uprzyjemnić prace z naszymi obrazami. Przykładowy projekt mozecie zobaczyć pod [linkiem](https://github.com/zawiszaty/php7-docker)
