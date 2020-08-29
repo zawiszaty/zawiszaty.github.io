@@ -4,6 +4,7 @@ title:  "#4 Autmatyczne budowanie i publikacja obrazów dockera przy uzyciu circ
 date:   2019-09-23 18:03:36 +0530
 categories: PHP Docker
 image: thumbnails.jpg
+comments: true
 ---
 Niejednokrotnie pewnie musieliście pushować swoje obrazy do jakiegoś rejestru np docker hub. Teraz możecie to zrobić nieco sprytniej. 
 

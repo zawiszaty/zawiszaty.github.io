@@ -4,6 +4,7 @@ title:  "#5 Wzorzec strategia na przykładzie GildedRose kata"
 date:   2020-08-29 18:03:36 +0530
 categories: PHP Kata
 image: thumbnails.jpg
+comments: true
 ---
 
 GildedRose kata jest idealnym przykładem jak przekombinowana ifologia może przynosić nam problemy ze zrozumieniem istniejącej implementacji. Paroma prostymi krokami może sobie z tym poradzić i znacząco zmniejszyć skomplikowanie implementacji.

@@ -5,4 +5,6 @@ layout: default
     <div class="post">
         {{ content }}
     </div>
-</div>
+    {% if page.comments %} 
+    <div id="disqus_thread"></div>
+<script>
